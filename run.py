@@ -169,15 +169,15 @@ if __name__ == '__main__':
     elif args.mode == 'finetune':
         train_params = dict(
             accumulate_grad_batches=args.gradient_accumulation_steps,
-            #devices=args.n_gpu,
+            devices=args.n_gpu,
             max_epochs=args.num_train_epochs,
             gradient_clip_val=args.max_grad_norm,
             precision = args.precision,
             enable_checkpointing=checkpoint_callback,
             logger=wandb_logger,
             callbacks = callbacks,
-            #strategy=args.accelerator,
-            accelerator = 'cpu'
+            strategy=args.accelerator,
+            #accelerator = 'cpu'
         )
         trainer= pl.Trainer(**train_params)
         #trainer.test(model)
