@@ -158,6 +158,7 @@ class MT5_MODEL(pl.LightningModule):
 
     def on_train_epoch_end(self):
         param_dict = {}
+        os.makedirs(f'{self.args.output_dir}', exist_ok=True)
         for name, param in self.model.named_parameters():
             param_dict[name]=param.clone().detach().cpu()
         torch.save(param_dict, f'{self.args.output_dir}/epoch_{self.epoch}.pt') 
