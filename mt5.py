@@ -19,7 +19,6 @@ def rgetattr(obj, attr, *args):
         return getattr(obj, attr, *args)
     return functools.reduce(_getattr, [obj] + attr.split('.'))
 
-
 class MT5_MODEL(pl.LightningModule):
     def __init__(self, args):
         super(MT5_MODEL, self).__init__()
@@ -32,7 +31,6 @@ class MT5_MODEL(pl.LightningModule):
     def get_dataset(self, dataset, tokenizer, type_path, args):
         dataset = Pretrain(dataset=dataset, tokenizer=tokenizer, type_path=type_path, input_length=args.max_input_length, 
                                 output_length=args.max_output_length, args=args)
-
         return dataset
         
     def forward(self, input_ids, attention_mask=None, decoder_input_ids=None, decoder_attention_mask=None, lm_labels=None):
