@@ -149,14 +149,15 @@ if __name__ == '__main__':
 
     if 'mt5' in args.model_name_or_path:
         model = MT5_MODEL(args)
-    
+
     if args.checkpoint_path!="":
         print(args.checkpoint_path)
         loaded_ckpt = torch.load(args.checkpoint_path)
-
+        
         loaded_model={}
         for key, value in loaded_ckpt.items():
             loaded_model['model.'+key] = value
+
         model.load_state_dict(loaded_model, strict=False)
 
     if args.mode == 'evaluate':

@@ -1,0 +1,7 @@
+__pycache__
+ckpt
+logs
+wandb
+result
+lightning_logs
+data
